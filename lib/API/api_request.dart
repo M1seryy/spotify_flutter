@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter_spotify/API/models/songModel.dart';
 import 'package:http/http.dart' as http;
@@ -8,6 +9,10 @@ Map<String, String> requestHeaders = {
   'x-rapidapi-key': 'b7b47a470emsh94ed39b08cdb69ap1b1ff5jsn35cacba5e3e8',
   'x-rapidapi-host': 'spotify-downloader9.p.rapidapi.com'
 };
+int getRandomNumber(int min, int max) {
+  final random = Random();
+  return min + random.nextInt(max - min + 1);
+}
 
 Future<List<SongItem>> fetchSongs(String artist) async {
   print('song fetch');

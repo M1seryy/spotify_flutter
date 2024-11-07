@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_spotify/API/api_request.dart';
 import 'package:flutter_spotify/API/models/songModel.dart';
+import 'package:flutter_spotify/components/NavigationBar.dart';
 import 'package:flutter_spotify/components/albumBlock.dart';
 
 class Home_Screen extends StatefulWidget {
@@ -89,23 +90,27 @@ class _Home_ScreenState extends State<Home_Screen> {
               ),
               SingleChildScrollView(
                 child: Container(
-                    height: 600,
+                    height: 500,
                     child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, // Кількість колонок
-                        crossAxisSpacing: 8.0, // Відстань між колонками
-                        mainAxisSpacing: 8.0, // Відстань між рядами
-                      ),
-                      itemCount: api_res.length, // Кількість елементів у масиві
-                      itemBuilder: (context, index) {
-                        return Albumblock(
-                          wallpaper:
-                              api_res.length > 1 ? api_res[index].coverArt : "",
-                          name: api_res.length > 1 ? api_res[index].name : "",
-                          id: api_res.length > 1 ? api_res[index].id : "",
-                        );
-                      },
-                    )),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Кількість колонок
+                    crossAxisSpacing: 8.0, // Відстань між колонками
+                    mainAxisSpacing: 8.0, // Відстань між рядами
+                  ),
+                  itemCount: api_res.length, // Кількість елементів у масиві
+                  itemBuilder: (context, index) {
+                    return Albumblock(
+                      wallpaper:
+                          api_res.length > 1 ? api_res[index].coverArt : "",
+                      name: api_res.length > 1 ? api_res[index].name : "",
+                      id: api_res.length > 1 ? api_res[index].id : "",
+                    );
+                  },
+                )),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: NavigationBarCustom(),
               ),
             ],
           )),

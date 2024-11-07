@@ -8,7 +8,7 @@ class Singletrack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.only(left: 10, right: 10, top: 12, bottom: 12),
       decoration: BoxDecoration(
           border: Border.all(
             width: 1,

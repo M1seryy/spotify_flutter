@@ -37,3 +37,39 @@ Future<List<SongItem>> fetchSongs(String artist) async {
     return [];
   }
 }
+
+Map<String, String> AlbumRequestHeaders = {
+  'Content-type': 'application/json',
+  'x-rapidapi-key': 'b7b47a470emsh94ed39b08cdb69ap1b1ff5jsn35cacba5e3e8',
+  'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+};
+
+Future<List<AlbumSong>> getAlbumSong(String trackId) async {
+  if (trackId != "") {
+    final url =
+        'https://spotify23.p.rapidapi.com/album_tracks/?id=$trackId&offset=0&limit=300';
+
+    print("start");
+    final uri = Uri.parse(url);
+    final responce = await http.get(uri, headers: AlbumRequestHeaders);
+    final json = jsonDecode(responce.body);
+    final mainData = json['data']['album']['tracks']['items'];
+    // final listJson = (json as List<dynamic>).toList();
+    final listJson = (mainData as List<dynamic>).toList();
+    // print(listJson);
+    // final testRes =
+    //     listJson.map((element) => {print(element['data']['name'])}).toList(); f
+
+    // print(listJson);
+    final transformed = listJson
+        .map((element) => AlbumSong(
+              name: element['track']['name'],
+            ))
+        .toList();
+
+    return transformed;
+  } else {
+    print("empty arr");
+    return [];
+  }
+}

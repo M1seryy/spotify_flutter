@@ -14,7 +14,6 @@ class Albumblock extends StatelessWidget {
         Expanded(
           child: InkWell(
             onTap: () => {
-              print(id),
               Navigator.push(
                   context,
                   MaterialPageRoute(
